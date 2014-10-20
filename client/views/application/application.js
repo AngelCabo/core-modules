@@ -222,11 +222,12 @@ Meteor.startup(function(){
       // mark it as in progress
       Session.set('isDrawingParallel', true);
 
-      // creates transparent canvas 
-      // merge with zelda animation, as that uses it too
-      var r = Raphael(0, 0, document.documentElement.clientWidth, document.documentElement.clientHeight);
-
       var element = document.querySelector("[data-id='" + bitHoveringId + "']");
+
+      // get center coordinates 
+      var boundingRect = element.getBoundingClientRect();
+      var bitCenterX = boundingRect.left + (boundingRect.width / 2);
+      var bitCenterY = boundingRect.top + (boundingRect.height / 2);
 
       // get bit obj
       // template.data.position_x
@@ -234,11 +235,20 @@ Meteor.startup(function(){
       
       // TODO: only enable if none others are going
 
-      // var circle = r.circle(element.position.x, element.position.y, 10);
-      // circle.attr({ fill: "blue" });
+      // TODO: scale to 1.1 to indicate a source
+      // TODO: border
+
+      // creates transparent canvas 
+      var paper = Raphael(0, 0, document.documentElement.clientWidth, document.documentElement.clientHeight);
+
+      var circle = paper.circle(bitCenterX, bitCenterY, 10);
+      circle.attr({ fill: "blue" });
 
       // TODO: move to map? merge map.js + app.js?
 
+      // TODO: trigger stretch sound
+
+      // track / show mouse pointer
       $(this).mousemove( function(event) {
         console.log("mouse event.page_: ", event.pageX, event.pageY);
       });
