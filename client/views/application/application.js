@@ -241,24 +241,46 @@ Meteor.startup(function(){
       // creates transparent canvas 
       var paper = Raphael(0, 0, document.documentElement.clientWidth, document.documentElement.clientHeight);
 
-      var circle = paper.circle(bitCenterX, bitCenterY, 10);
-      circle.attr({ fill: "blue" });
+      var circle = paper.circle(bitCenterX, bitCenterY, 15);
+      circle.attr({ fill: "#222" });
+      circle.attr("stroke", "");
+
+      // tween the fill to blue (#00f) and x to 100, y to 100, 
+      // width to 100 and height to 50 over the course of 3 seconds using an ease of Power1.easeInOut
+      TweenLite.to(circle, 0.25, { raphael:{  strokeWidth: 20 }, ease:Power1.easeInOut});
+
+      var oPath = paper.path(bitCenterX, bitCenterY, event.pageX, event.pageY);
+      oPath.attr( { 
+        'stroke-width': 15 
+      });
 
       // TODO: move to map? merge map.js + app.js?
 
       // TODO: trigger stretch sound
 
       // track / show mouse pointer
-      $(this).mousemove( function(event) {
+      $("body").on( 'mousemove',  function(event) {
         console.log("mouse event.page_: ", event.pageX, event.pageY);
+        
+        // M vars are move the cursor to 
+        // L vars are draw the line from M[x][y] to L[x][y]
+        var sNewPath = 'M' + bitCenterX  + ',' + bitCenterY + 'L' + event.pageX + ',' + event.pageY + '';
+        oPath.attr({ 'path':sNewPath, 'stroke': "#222" });
+
+          // bind globally, so escape is caught even inside forms
+          Mousetrap.bindGlobal('esc', function() {
+            event.preventDefault();
+            event.stopPropagation();
+
+            console.log('escape key inside of bit:create parallel');
+            $('body').off('mousemove');
+          });
+
       });
       
-      // $(this).unbind();
+      // TODO: 
 
-      // tween the fill to blue (#00f) and x to 100, y to 100, 
-      // width to 100 and height to 50 over the course of 3 seconds using an ease of Power1.easeInOut
-      // TweenLite.to(rect, 3, { raphael:{ fill:"#00f", x:100, y:100, width:100, height:50 }, ease:Power1.easeInOut});
-
+ 
 
     }
   });
