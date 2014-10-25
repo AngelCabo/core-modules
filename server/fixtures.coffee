@@ -78,9 +78,37 @@ if Bits.find().count() is 0
     nativeWidth: 1000
     nativeHeight: 943
 
+  Bits.insert
+    type: "image"
+    position_x: 400
+    position_y: 400
+    filename: "1-d70aefc9"    
+    nativeWidth: 276
+    nativeHeight: 412
 
+  Bits.insert
+    type: "image"
+    position_x: 500
+    position_y: 500
+    filename: "2029811645_a945abaacf"    
+    nativeWidth: 350
+    nativeHeight: 441
 
+  Bits.insert
+    type: "image"
+    position_x: 600
+    position_y: 600
+    filename: "mark_webster_umberto_ode"    
+    nativeWidth: 431
+    nativeHeight: 544
 
+  # Bits.insert
+  #   type: ""
+  #   position_x: 
+  #   position_y: 
+  #   filename: ""    
+  #   nativeWidth: 
+  #   nativeHeight: 
 
 
 
