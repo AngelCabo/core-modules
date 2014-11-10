@@ -1,14 +1,10 @@
 <template name="map">
-
-    {{> menu }}  
-
+  {{> menu }}  
   <div class="map">
-
+    {{> dropzone url='/' id='dropspot'}}
     {{ #each bits }}
-      {{> bit }}
+    {{> bit }}
     {{/each }}
-
   </div>
-
 </template>
 

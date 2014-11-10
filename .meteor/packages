@@ -16,6 +16,7 @@ meteorhacks:inject-initial
 infinitedg:gsap
 ovcharik:howler
 fourseven:scss
-wolves:bourbon
 clubfest:raphael
-
+dbarrett:dropzonejs
+cfs:filesystem
+cfs:standard-packages

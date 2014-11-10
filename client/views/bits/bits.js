@@ -244,16 +244,6 @@ Template.bit.events({
 });
 
 
-
 Template.bit.isEditingThisBit = function() {
   return Session.equals('bitEditingId', this._id);
 };
-
-
-
-
-
-
-
-
-
