@@ -60,7 +60,7 @@ Meteor.startup(function(){
     if(bitHoveringId)
     {
       Bits.remove(bitHoveringId);
-      console.log("bit:delete: " + bitHoveringId);
+      window.PARALLELS.Events.publish('ux', {message: "bit:delete: " + bitHoveringId});
     }
   });
 
@@ -101,7 +101,7 @@ Meteor.startup(function(){
       var bitData = Blaze.getData(bitTemplate);
 
       if (bitData.type === "image"){
-        console.log("bit:image:preview: " + bitHoveringId);
+        window.PARALLELS.Events.publish('debug', {message: "bit:image:preview: " + bitHoveringId});
         
         $bitImg = $(bitTemplate.templateInstance().$('img'));
         var bitThumbnailHeight = $bitImg.height();
@@ -150,7 +150,7 @@ Meteor.startup(function(){
             var documentHeight = $(document).height();
 
             var timelineStart = function () {
-                console.log('bit:preview timeline starting ...');
+              window.PARALLELS.Events.publish('ux', {message: "bit:preview"});
 
                 // TODO: kill all running animations
 
@@ -186,8 +186,7 @@ Meteor.startup(function(){
               .to($bitImg, 0.25, options );
 
             var timelineDone = function( bitHoveringId ){
-              console.log("bit:preview:", bitHoveringId, "tween done." );
-              
+              window.PARALLELS.Events.publish('debug', {message: "bit:text:preview " + bitHoveringId + " tween done."});
               // TODO:  wire up escape here to close?
               // inside of close function, make sure to set Session.set('bitPreviewingId', null);
             };
@@ -199,7 +198,7 @@ Meteor.startup(function(){
 
       else if (bitData.type === "text") {
         // TODO: how to preview text?
-        console.log("bit:preview:", bitHoveringId, " is type text. Feature not built yet." );
+        window.PARALLELS.Events.publish('debug', {message: "bit:text:preview (Feature not built yet.)"});
       }
     }
   });
@@ -217,7 +216,7 @@ Meteor.startup(function(){
     if(bitHoveringId && (!isDrawingParallel))
     {
       // shift
-      console.log("bit:ready for drag: " + bitHoveringId);
+      window.PARALLELS.Events.publish('debug', {message: "bit:ready for drag: " + bitHoveringId});
 
       // mark it as in progress
       Session.set('isDrawingParallel', true);
@@ -254,13 +253,13 @@ Meteor.startup(function(){
   });
 
 
+
   console.log("Meteor.startup done.");
 
   Tracker.autorun(function() {
-    console.log(Bits.find().count() + ' bits... updated via deps');
+    window.PARALLELS.Events.publish('ux', {message: "bit:text:create"});
+    console.log(Bits.findOne({}).count() + ' bits... updated via deps');
   });
-
-
 
 });
 

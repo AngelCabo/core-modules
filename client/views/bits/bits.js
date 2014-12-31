@@ -157,8 +157,8 @@ Template.bit.rendered = function() {
       var y = this.endY;
 
       var mongoId = this.target.dataset.id;
-      console.log(event.type + ": " + mongoId + " : " + x + " : " + y);
-      
+      window.PARALLELS.Events.publish('debug', {message: event.type + ": " + mongoId + " : " + x + " : " + y});
+
       Bits.update( mongoId , {
         $set: {
           "position_x": x,
@@ -185,7 +185,7 @@ Template.bit.events({
 
     if (event.target.classList.contains('bit')) {
       Session.set('bitHoveringId', template.data._id);
-      console.log("bit:hover:in " + Session.get('bitHoveringId'));
+      window.PARALLELS.Events.publish('debug', {message: "bit:hover:in " + Session.get('bitHoveringId')});
 
       // TODO: shimmer on hover
       // TODO: scale
@@ -204,7 +204,7 @@ Template.bit.events({
 
     if (event.target.classList.contains('bit')) {
       Session.set('bitHoveringId', '');
-      console.log("bit:hover:out " + Session.get('bitHoveringId'));
+      window.PARALLELS.Events.publish('debug', {message: "bit:hover:out " + Session.get('bitHoveringId')});
       // $(event.target).removeClass('selected');
 
     }
@@ -213,7 +213,7 @@ Template.bit.events({
   'click .bit': function (event, template){
 
     // TODO: Zelda triforce focus here, zoom sound
-    console.log("bit:click: " + this._id);     
+    window.PARALLELS.Events.publish('debug', {message: "bit:click: " + this._id});
   },
 
   'dblclick .bit': function (event, template){
@@ -221,7 +221,7 @@ Template.bit.events({
     event.stopPropagation();
 
     Session.set('bitEditingId',this._id);
-    console.log("bit:edit: " + Session.get('bitEditingId'));
+    window.PARALLELS.Events.publish('debug', {message: "bit:edit: " + Session.get('bitEditingId')});
   },
 
   'keyup .bit': function (event, template){

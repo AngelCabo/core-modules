@@ -1,17 +1,16 @@
 Template.menu.helpers({
 
-  bitEditingId: function() { 
-    return Session.get('bitEditingId'); 
+  bitEditingId: function() {
+    return Session.get('bitEditingId');
   },
-  
-  bitsCount: function() { 
+
+  bitsCount: function() {
     return Bits.find().count();
   },
 
   bitProject: function() {
       return Session.get('bitProject');
   }
-  
 });
 
 
@@ -19,7 +18,7 @@ Template.menu.helpers({
 Template.menu.rendered = function() {
   console.log('menu rendered.');
 
-  
+
 
 
   // *********************************************************************
@@ -28,6 +27,7 @@ Template.menu.rendered = function() {
 
   var screenWidth;
   var screenHeight;
+  var events = [];
 
   function start () {
       resize();
@@ -79,13 +79,39 @@ Template.menu.rendered = function() {
       return tl;
   }
 
-  
+
   start();  // run wipe transition
 
   // *********************************************************************
 
+  window.PARALLELS.Events.subscribe('ux', function (event) {
+    // Begin Dummy code
+    var eventTrail = $('.event-trail');
+    var colors = [
+      '#f80c12',
+      '#ee1100',
+      '#ff3311',
+      '#ff4422',
+      '#ff6644',
+      '#ff9933',
+      '#feae2d',
+      '#ccbb33',
+      '#d0c310',
+      '#aacc22',
+      '#69d025',
+      '#22ccaa',
+      '#12bdb9',
+      '#11aabb',
+      '#4444dd',
+      '#3311bb',
+      '#3b0cbd',
+      '#442299'
+    ];
+    events.push(event);
+    if (events.length > 100) eventTrail.find('div').first().remove();
+    eventTrail.append( "<div title='"+ event['message'] + "' style='background-color: " + colors[Math.floor(Math.random() * 17) + 1] + "; display: table-cell'></div>" );
+    // End dummy code
+  });
 
-
-  
 };
 
