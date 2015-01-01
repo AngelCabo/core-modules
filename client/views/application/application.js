@@ -257,8 +257,7 @@ Meteor.startup(function(){
   console.log("Meteor.startup done.");
 
   Tracker.autorun(function() {
-    window.PARALLELS.Events.publish('ux', {message: "bit:text:create"});
-    console.log(Bits.findOne({}).count() + ' bits... updated via deps');
+    if (Bits.find()) return Bits.find().count();;
   });
 
 });
