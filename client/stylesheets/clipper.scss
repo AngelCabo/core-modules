@@ -1,0 +1,174 @@
+@mixin user-select-none {
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+
+  /* No support for these yet, future proofing */
+  -o-user-select: none;
+  user-select: none;
+}
+
+
+@mixin element-tray {
+  /*
+      from https://stackoverflow.com/questions/11816166/android-ics-like-input-field-in-css
+  */
+  padding: 8px 8px 6px 8px;
+  margin: 0;
+  outline: none;
+  border: none;
+  background: bottom left linear-gradient(gray, gray) no-repeat, bottom center linear-gradient(gray, gray) repeat-x, bottom right linear-gradient(gray, gray) no-repeat;
+  background-size: 1px 6px, 1px 1px, 1px 6px;
+
+  &:hover,
+  &:focus {
+    background: bottom left linear-gradient(#0099cc, #0099cc) no-repeat,
+    bottom center linear-gradient(#0099cc, #0099cc) repeat-x,
+    bottom right linear-gradient(#0099cc, #0099cc) no-repeat;
+    background-size: 1px 6px, 1px 1px, 1px 6px;
+  }
+}
+
+@mixin base-type {
+  font-family: 'ChaparralPro-Regular' !important;
+  font-size: 1.3em !important;
+  color: #FFF;
+}
+
+.parallels-web-clipper {
+
+  /* use pixels here to define the base size for type in this document.
+    everywhere else, we'll use ems, which is relative sizing based on this */
+  font-size: 14px !important;
+  color: #555;
+
+  /* this makes all margin + padding inside the box, which makes design much easier */
+  * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+
+  .bit-dialog {
+    position: fixed;
+    z-index: 2147483647;  // http://softwareas.com/whats-the-maximum-z-index
+    top: -300px;          // default to off-canvas, animating position into place
+    right: 0;
+    width: 100%;
+    margin: 0;
+    background: #5B5B5B;
+  }
+
+  .bit-title {
+    @include element-tray;
+    @include base-type;
+    display: inline-block;
+    max-width: 50%;
+    margin: 0;
+    padding: 0.5em 0.5em 0.25em 0.5em;
+  }
+
+  .bit-panel        { margin: 0 1em 1em 1em; }
+  .bit-screenshot   { height: 10em; }
+  .bit-context      {
+    @include element-tray;
+    @include base-type;
+  }
+
+  .bit-actions      { margin-top: 2em; }
+
+  .tag-editor {
+    @include element-tray;
+
+    display: inline-block;
+    float: none;
+    cursor: text;
+    min-width: 15em;
+    min-height: 3.3em;
+    max-width: 50%;
+
+    div {
+      float: none;
+      padding: 0;
+    }
+
+    .placeholder {
+      padding: 0;
+      color: gray;
+    }
+
+    input { color: white; }
+
+    li:first-child { display: none; }
+    li {
+      position: relative;
+      display: inline-block;
+      float: none;
+      padding: 0.25em 0.75em;
+      padding-right: 1.5em;
+      margin: 0 0.5em 0 0.35em;
+      border-radius: 2em;
+      background-color: gray;
+
+      .tag-editor-spacer  { display: none; }
+
+      .tag-editor-tag     {
+
+        @include user-select-none;
+        @include base-type;
+        display: inline-block;
+        overflow: visible;
+        background: transparent;
+        border-radius: 0;
+        line-height: initial;
+      }
+
+      .tag-editor-delete  {
+        position: absolute;
+        display: inline-block;
+        width: 1em;
+        height: 2em;
+        top: -15px;
+        padding: 0;
+        margin: 0 0.5em;
+        background: transparent;
+        color: white;
+        border-radius: 0;
+        background: #FF0;
+
+        i { display: none; }
+      }
+    }
+  }
+
+  button {
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    width: auto;
+    height: auto;
+    padding: 1em;
+    text-transform: uppercase;
+    border: 0;
+  }
+
+  .blue {
+    color: #fff;
+    background-color: #357ae8;
+
+    background-image: -webkit-linear-gradient(top, #4d90fe, #357ae8);
+    background-image: -moz-linear-gradient(top, #4d90fe, #357ae8);
+    background-image: -ms-linear-gradient(top, #4d90fe, #357ae8);
+    background-image: -o-linear-gradient(top, #4d90fe, #357ae8);
+    background-image: linear-gradient(top, #4d90fe, #357ae8);
+  }
+
+  .gray {
+    color: #444;
+    background-color: #f5f5f5;
+
+    background-image: -webkit-linear-gradient(top, #f5f5f5, #f1f1f1);
+    background-image: -moz-linear-gradient(top, #f5f5f5, #f1f1f1);
+    background-image: -ms-linear-gradient(top, #f5f5f5, #f1f1f1);
+    background-image: -o-linear-gradient(top, #f5f5f5, #f1f1f1);
+    background-image: linear-gradient(top, #f5f5f5, #f1f1f1);
+  }
+
+}
+

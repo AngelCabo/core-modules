@@ -4,8 +4,13 @@ Template.clipper.rendered = function () {
 
 Template.clipper.events({
 
-  "click .closeButton": function () {
-    console.log("this is a test");
+  "click button.cancel": function () {
+    Messenger.send({event: "closeOverlay"});
+  },
+
+  "click button.submit": function () {
+    //Messenger.send({event: "closeOverlay"});
+    console.log('bit:created');
     Messenger.send({event: "closeOverlay"});
   }
 
