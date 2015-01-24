@@ -127,8 +127,13 @@
         requestIndex++;
         if (content.indexOf(origUrl) != -1) {
           data.mediaType = data.mediaType ? data.mediaType.split(";")[0] : null;
-          content = content.replace(new RegExp(origUrl.replace(/([{}\(\)\^$&.\*\?\/\+\|\[\\\\]|\]|\-)/g, "\\$1"), "gi"), getDataURI(data,
-            EMPTY_PIXEL_DATA, true));
+          try {
+            content = content.replace(new RegExp(origUrl.replace(/([{}\(\)\^$&.\*\?\/\+\|\[\\\\]|\]|\-)/g, "\\$1"), "gi"), getDataURI(data,
+              EMPTY_PIXEL_DATA, true));
+          } catch (err) {
+            console.log(err);
+          }
+
         }
         if (requestIndex == requestMax)
           callback(content);
