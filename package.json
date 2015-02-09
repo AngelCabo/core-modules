@@ -28,5 +28,8 @@
   },
   "scripts": {
     "test": "./bin/run_tests.sh"
+  },
+  "dependencies": {
+    "busboy": "^0.2.9"
   }
 }

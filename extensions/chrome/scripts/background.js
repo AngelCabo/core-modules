@@ -13,9 +13,6 @@
 requirejs(['browser', 'background/main', 'modules/messenger'],
   function (browser, background, messenger) {
 
-    var onClipperReady = function () {
-      console.log('background:onClipperReady');
-    };
     browser.onExtensionTriggered(background.startClipping);
 
     messenger.registerEvent('open-dialog-via-key-command', function() {
@@ -30,6 +27,6 @@ requirejs(['browser', 'background/main', 'modules/messenger'],
 
     });
 
-    messenger.registerEvent('clipper-ready', onClipperReady);
+    messenger.registerEvent('clipper-ready', function() { console.log('background:onClipperReady'); });
     messenger.registerEvent('save-bit', background.saveBit);
   });
