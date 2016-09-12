@@ -2,16 +2,21 @@
   "name": "makeparallels",
   "version": "1.0.0",
   "description": "Make Parallels Desktop App",
+  "repository": "git@github.com:angelcabo/core-modules.git",
   "scripts": {
     "postinstall": "install-app-deps",
     "start": "npm install && electron ./desktop-app",
     "pack": "build --dir",
-    "dist": "build"
+    "dist": "build",
+    "release": "build --publish=always"
   },
   "build": {
     "appId": "org.angelcabo.makeparallels",
     "category": "public.app-category.productivity",
-    "productName": "Make Parallels"
+    "productName": "Make Parallels",
+    "dmg": {
+      "title": "Make Parallels"
+    }
   },
   "directories": {
     "app": "desktop-app"

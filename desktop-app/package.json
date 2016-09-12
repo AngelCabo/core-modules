@@ -2,6 +2,7 @@
   "name": "makeparallels",
   "version": "1.0.0",
   "description": "Make Parallels Desktop App",
+  "repository": "git@github.com:angelcabo/core-modules.git",
   "author": "Angel Balcarcel",
   "main": "main.js",
   "license": "ISC",
