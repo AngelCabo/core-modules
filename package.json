@@ -1,0 +1,25 @@
+{
+  "name": "makeparallels",
+  "version": "1.0.0",
+  "description": "Make Parallels Desktop App",
+  "scripts": {
+    "postinstall": "install-app-deps",
+    "start": "npm install && electron ./desktop-app",
+    "pack": "build --dir",
+    "dist": "build"
+  },
+  "build": {
+    "appId": "org.angelcabo.makeparallels",
+    "category": "public.app-category.productivity",
+    "productName": "Make Parallels"
+  },
+  "directories": {
+    "app": "desktop-app"
+  },
+  "author": "Angel Balcarcel",
+  "license": "ISC",
+  "devDependencies": {
+    "electron-builder": "6.7.3",
+    "electron": "1.3.5"
+  }
+}
